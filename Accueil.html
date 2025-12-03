@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESPRITCovoiturage</title>
+    
+    <link rel="stylesheet" href="style/style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-bg-light font-roboto">
+<!-- Header -->
+<header class="w-full bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 sm:h-24 flex items-center justify-between">
+        
+        <div class="flex items-center gap-2 sm:gap-4">
+            <div class="w-10 h-10 sm:w-14 sm:h-14">
+                <img src="style/assets/logo.jpg" alt="Logo" class="w-full h-full object-cover">
+            </div>
+            <div class="text-black text-lg sm:text-xl md:text-2xl font-bold font-outfit">ESPRITCovoiturage</div>
+        </div>
+
+        
+        <div class="flex items-center gap-4 sm:gap-10">
+            <nav class="hidden md:flex gap-6 lg:gap-8">
+                <a href="#" class="text-gray-text text-sm lg:text-base font-medium hover:text-black transition">Accueil</a>
+                <a href="#" class="text-gray-text text-sm lg:text-base font-medium hover:text-black transition">Options</a>
+                <a href="#" class="text-gray-text text-sm lg:text-base font-medium hover:text-black transition">Témoignages</a>
+                <a href="#" class="text-gray-text text-sm lg:text-base font-medium hover:text-black transition">CovoltBot</a>
+            </nav>
+
+            <a href="Login.html">
+            <button class="bg-teal-primary hover:bg-teal-dark transition rounded-full shadow-md px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4">
+                <span class="text-teal-darker text-sm sm:text-base font-semibold font-outfit tracking-wider">Connexion</span>
+            </button>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section avec fond dégradé -->
+<main class="relative overflow-hidden">
+    <!-- Cercles de fond décoratifs -->
+    <div class="absolute w-1400 h-187 bg-teal-dark opacity-30 rounded-full blur-3xl -top-20 -left-20 z-20"></div>
+    
+    
+    <section class="relative w-full flex flex-col items-center text-center px-6 py-20">
+
+        <div class="bg-white bg-opacity-35 rounded-full border border-teal-dark px-10 py-3 mb-8">
+            <span class="Titre1 text-lg md:text-xl font-semibold font-outfit tracking-widest">
+                Plateforme Officielle pour Étudiants ESPRIT
+            </span>
+        </div>
+
+        <h1 class="TitrePrincipale font-outfit font-bold text-5xl md:text-7xl lg:text-8xl leading-tight max-w-5xl">
+            Partagez vos trajets<br/>
+            et construisez votre<br/>
+            communauté
+        </h1>
+        
+
+        <p class="max-w-4xl TitrePrincipale text-xl md:text-2xl font-light font-roboto leading-8 mt-8">
+            Rejoignez des centaines d'étudiants ESPRIT qui voyagent ensemble. 
+            Économisez de l'argent, gagnez du temps et créez des liens durables.
+        </p>
+
+        <div class="flex flex-col md:flex-row items-center gap-6 mt-12">
+            <button class="bg-teal-primary hover:bg-teal-dark transition text-white font-semibold font-outfit 
+                            px-10 py-4 rounded-full shadow-lg shadow-teal-primary/50 text-lg tracking-widest">
+                Commencer maintenant
+            </button>
+
+            <button class="bg-white hover:bg-gray-50 transition border border-teal-dark text-gray-text font-semibold font-outfit
+                            px-10 py-4 rounded-full text-lg tracking-widest">
+                Voir comment ça marche
+            </button>
+        </div>
+    </section>
+
+    
+    <!-- Section Statistiques -->
+    <section class="relative w-full py-20 flex justify-center">
+        <div class="max-w-7xl w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="flex justify-center">
+                <img src="style/assets/img1.png" 
+                     alt="Statistiques"
+                     class="w-full max-w-md md:max-w-lg">
+            </div>
+
+            <div class="flex flex-col justify-center text-teal-darker">
+                <h2 class="font-outfit font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
+                    Statistiques en temps réel<br/>
+                    pour suivre vos trajets
+                </h2>
+
+                <p class="text-xl md:text-2xl font-light font-roboto leading-8 mt-6">
+                    Visualisez vos économies, vos émissions évitées et votre impact sur 
+                    la communauté ESPRIT avec nos tableaux de bord intuitifs.
+                </p>
+
+                <button class="bg-teal-primary hover:bg-teal-dark transition text-white font-semibold font-outfit
+                               px-10 py-4 rounded-full shadow-lg shadow-teal-primary/50 text-lg tracking-widest mt-10 w-fit">
+                    Voir les statistiques
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section CovoltBot -->
+    <section class="relative w-full py-20 flex justify-center">
+
+        <div class="max-w-7xl w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="flex flex-col justify-center text-teal-darker order-2 md:order-1">
+                <h2 class="font-outfit font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
+                    Assistant IA pour<br/>
+                    optimiser vos déplacements
+                </h2>
+
+                <p class="text-xl md:text-2xl font-light font-roboto leading-8 mt-6">
+                    CovoltBot vous aide à trouver les meilleurs trajets, gérer vos réservations 
+                    et communiquer avec votre groupe en temps réel.
+                </p>
+
+                <button class="bg-teal-primary hover:bg-teal-dark transition text-white font-semibold font-outfit
+                               px-10 py-4 rounded-full shadow-lg shadow-teal-primary/50 text-lg tracking-widest mt-10 w-fit">
+                    Découvrir CovoltBot
+                </button>
+            </div>
+
+            <div class="flex justify-center md:justify-end order-1 md:order-2">
+                <img src="style/assets/img2.png"
+                     alt="CovoltBot"
+                     class="w-full max-w-sm md:max-w-md">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Fonctionnalités -->
+    <section class="relative w-full py-20 flex justify-center">
+        <div class="max-w-7xl w-full px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-outfit font-bold text-4xl md:text-5xl lg:text-6xl leading-tight text-teal-darker">
+                    Tout ce dont vous avez besoin
+                </h2>
+                <p class="text-xl md:text-2xl font-light font-roboto leading-8 mt-4 text-gray-text">
+                    Des fonctionnalités conçues pour les étudiants ESPRIT
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Carte 1 -->
+                <div class="bg-white rounded-3xl border border-teal-dark p-8 hover:shadow-xl transition flex flex-col items-center">
+                    <img src="style/assets/1.jpg" alt="Sécurité" class="w-20 h-20 mb-6">
+                    <h3 class="text-black text-2xl font-bold font-roboto text-center mb-4">
+                        Sécurité maximale
+                    </h3>
+                    <p class="text-gray-text text-base font-roboto text-center leading-6">
+                        Tous les comptes sont vérifiés avec votre email ESPRIT. Système de notation et signalement intégré.
+                    </p>
+                </div>
+
+                <!-- Carte 2 -->
+                <div class="bg-white rounded-3xl border border-teal-dark p-8 hover:shadow-xl transition flex flex-col items-center">
+                    <img src="style/assets/2.jpg" alt="Groupes" class="w-20 h-20 mb-6">
+                    <h3 class="text-black text-2xl font-bold font-roboto text-center mb-4">
+                        Groupes privés
+                    </h3>
+                    <p class="text-gray-text text-base font-roboto text-center leading-6">
+                        Créez des groupes avec vos amis de classe pour organiser facilement vos trajets réguliers.
+                    </p>
+                </div>
+
+                <!-- Carte 3 -->
+                <div class="bg-white rounded-3xl border border-teal-dark p-8 hover:shadow-xl transition flex flex-col items-center">
+                    <img src="style/assets/3.jpg" alt="Économies" class="w-20 h-20 mb-6">
+                    <h3 class="text-black text-2xl font-bold font-roboto text-center mb-4">
+                        Économies garanties
+                    </h3>
+                    <p class="text-gray-text text-base font-roboto text-center leading-6">
+                        Réduisez vos frais de transport jusqu'à 70% en partageant les coûts avec d'autres étudiants.
+                    </p>
+                </div>
+
+                <!-- Carte 4 -->
+                <div class="bg-white rounded-3xl border border-teal-dark p-8 hover:shadow-xl transition flex flex-col items-center">
+                    <img src="style/assets/5.jpg" alt="CovoltBot" class="w-20 h-20 mb-6">
+                    <h3 class="text-black text-2xl font-bold font-roboto text-center mb-4">
+                        CovoltBot intelligent
+                    </h3>
+                    <p class="text-gray-text text-base font-roboto text-center leading-6">
+                        Assistant IA qui vous trouve les meilleurs trajets et gère vos réservations automatiquement.
+                    </p>
+                </div>
+
+                <!-- Carte 5 -->
+                <div class="bg-white rounded-3xl border border-teal-dark p-8 hover:shadow-xl transition flex flex-col items-center">
+                    <img src="style/assets/4.jpg" alt="Notifications" class="w-20 h-20 mb-6">
+                    <h3 class="text-black text-2xl font-bold font-roboto text-center mb-4">
+                        Notifications instantanées
+                    </h3>
+                    <p class="text-gray-text text-base font-roboto text-center leading-6">
+                        Recevez des alertes en temps réel pour vos trajets et les modifications de dernière minute.
+                    </p>
+                </div>
+
+                <!-- Carte 6 -->
+                <div class="bg-white rounded-3xl border border-teal-dark p-8 hover:shadow-xl transition flex flex-col items-center">
+                    <img src="style/assets/6.jpg" alt="Écologie" class="w-20 h-20 mb-6">
+                    <h3 class="text-black text-2xl font-bold font-roboto text-center mb-4">
+                        Impact écologique
+                    </h3>
+                    <p class="text-gray-text text-base font-roboto text-center leading-6">
+                        Suivez votre contribution à la réduction des émissions de CO₂ et partagez vos achievements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="relative w-full py-20 flex justify-center">
+        <div class="max-w-7xl w-full px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-outfit font-bold text-4xl md:text-5xl lg:text-6xl leading-tight text-teal-darker">
+                    Ce que disent nos utilisateurs
+                </h2>
+                <p class="text-xl md:text-2xl font-light font-roboto leading-8 mt-4 text-gray-text">
+                    Des milliers d'étudiants ESPRIT nous font confiance
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Témoignage 1 -->
+                <div class="bg-white border border-teal-dark rounded-3xl p-8 flex flex-col items-center hover:shadow-xl transition">
+                    <div class="w-28 h-28 rounded-full overflow-hidden mb-4 -mt-16  border-white shadow-md">
+                       <img src="style/assets/p3.jpg" alt="Nom" class="w-full h-full object-cover">
+                     </div>
+                    <h3 class="text-black font-roboto font-bold text-xl text-center">Rached Trablsi</h3>
+                    <p class="text-gray-text font-roboto text-sm text-center mb-4">Étudiante 4 SAE</p>
+                    <div class="flex gap-1 mb-4">
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                    </div>
+                    <p class="text-center text-gray-text font-roboto text-sm leading-6">
+                        "La sécurité est au top avec la vérification des comptes ESPRIT. Je me sens en confiance avec tous les conducteurs de la plateforme."
+                    </p>
+                </div>
+
+                <!-- Témoignage 2 -->
+                <div class="bg-white border border-teal-dark rounded-3xl p-8 flex flex-col items-center hover:shadow-xl transition">
+
+                    <div class="w-28 h-28 rounded-full overflow-hidden mb-4 -mt-16  border-white shadow-md">
+    <img src="style/assets/p1.jpg" alt="Nom" class="w-full h-full object-cover">
+  </div>
+                    <h3 class="text-black font-roboto font-bold text-xl text-center">Ranine Talbi</h3>
+                    <p class="text-gray-text font-roboto text-sm text-center mb-4">Étudiante 4 TWIN</p>
+                    <div class="flex gap-1 mb-4">
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                    </div>
+                    <p class="text-center text-gray-text font-roboto text-sm leading-6">
+                        "Les groupes privés sont parfaits pour organiser mes trajets avec mes amis de classe. On partage nos horaires et c'est super pratique!"
+                    </p>
+                </div>
+
+                <!-- Témoignage 3 -->
+                <div class="bg-white border border-teal-dark rounded-3xl p-8 flex flex-col items-center hover:shadow-xl transition">
+
+                    <div class="w-28 h-28 rounded-full overflow-hidden mb-4 -mt-16  border-white shadow-md">
+    <img src="style/assets/p2.jpg" alt="Nom" class="w-full h-full object-cover">
+  </div>
+                    <h3 class="text-black font-roboto font-bold text-xl text-center">Eya Ketata</h3>
+                    <p class="text-gray-text font-roboto text-sm text-center mb-4">Étudiante 4 INFINI</p>
+                    <div class="flex gap-1 mb-4">
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                        <span class="text-yellow-400 text-2xl">⭐</span>
+                    </div>
+                    <p class="text-center text-gray-text font-roboto text-sm leading-6">
+                        "J'économise plus de 150 DT par mois grâce au covoiturage. L'application est simple et CovoltBot trouve toujours les meilleurs trajets pour moi."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section CTA finale -->
+    <section class="relative w-full py-20 flex justify-center px-6">
+        
+        <div class="max-w-5xl w-full bg-gradient-to-br from-teal-primary/40 to-teal-dark/40 border-2 border-teal-primary 
+                    rounded-3xl shadow-2xl shadow-teal-primary/30 p-12 flex flex-col items-center">
+            <h2 class="text-center text-teal-darker font-outfit font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+                Rejoignez la communauté<br/>ESPRIT
+            </h2>
+
+            <p class="text-center text-teal-darker font-roboto font-light text-lg md:text-2xl leading-8 max-w-3xl mb-10">
+                Inscrivez-vous maintenant avec votre email ESPRIT et commencez à partager vos trajets dès aujourd'hui. 
+                C'est gratuit, rapide et sécurisé.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 w-full sm:w-auto justify-center">
+                <button class="bg-teal-primary hover:bg-teal-dark transition text-white font-outfit font-semibold 
+                               px-12 py-4 rounded-full shadow-lg shadow-teal-primary/50 text-lg tracking-wider">
+                    Créer un compte
+                </button>
+                <button class="bg-white hover:bg-gray-50 transition border-2 border-teal-dark text-gray-text 
+                               font-outfit font-semibold px-12 py-4 rounded-full text-lg tracking-wider">
+                    En savoir plus
+                </button>
+            </div>
+        </div>
+        
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full bg-white mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-2">
+                            <!-- Logo et description -->
+            <div>
+                <div class="text-black text-2xl font-bold font-outfit mb-4">
+                    ESPRITCovoiturage
+                </div>
+                <p class="text-gray-text text-base font-roboto leading-6 mb-6">
+                    La plateforme de covoiturage dédiée exclusivement aux étudiants et au personnel d'ESPRIT.
+                    Partagez, économisez, connectez-vous.
+                </p>
+                <div class="w-40 h-20">
+                    <img src="style/assets/esprit.png" alt="Logo ESPRIT" class="w-full h-full object-contain">
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div> 
+                <h3 class="text-black text-xl font-bold font-outfit mb-4">Navigation</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Accueil</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Options</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Témoignages</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">CovoltBot</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-black text-xl font-bold font-outfit mb-4">Contact</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Email</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">LinkedIn</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Instagram</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+
+</div>      
+<div data-layer="Rectangle 33" 
+     class="Rectangle33 w-full h-0.5 bg-gradient-to-br from-emerald-400/75 from-[27%] to-slate-500">
+</div>
+<p class="text-center text-gray-text text-sm font-roboto my-4">
+    © 2025 ESPRIT Covoiturage. Tous droits réservés. | Conçu pour la communauté ESPRIT
+</p>
+<div data-layer="Rectangle 32" 
+     class="Rectangle32 w-full h-2.5 bg-gradient-to-br from-emerald-400/75 from-[27%] to-slate-500">
+</div>
+</footer>
+</body>
+</html>

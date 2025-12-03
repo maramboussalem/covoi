@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESPRITCovoiturage</title>
+    
+    <link rel="stylesheet" href="style/style.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+
+<body class="bg-bg-light font-roboto">
+
+    <!-- Header -->
+<header class="w-full bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 sm:h-24 flex items-center justify-between">
+        
+        <div class="flex items-center gap-2 sm:gap-4">
+            <div class="w-10 h-10 sm:w-14 sm:h-14">
+                <img src="style/assets/logo.jpg" alt="Logo" class="w-full h-full object-cover">
+            </div>
+            <div class="text-black text-lg sm:text-xl md:text-2xl font-bold font-outfit">ESPRITCovoiturage</div>
+        </div>
+
+        <div class="flex items-center gap-4 sm:gap-10">
+
+            <a href="Login.html">
+            <button class="bg-teal-primary hover:bg-teal-dark transition rounded-full shadow-md px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4">
+                <span class="text-teal-darker text-sm sm:text-base font-semibold font-outfit tracking-wider">Connexion</span>
+            </button>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="w-full mt-15">
+
+  <section class="relative w-full min-h-screen flex flex-col items-center justify-center px-4 sm:px-6">
+    <div class="Compte relative w-full max-w-[705px]">
+
+      <!-- Fond flou derrière la card -->
+      <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-[705px] h-[1239px] bg-teal-primary/20 rounded-[20px] blur-[200px] z-0"></div>
+
+      <!-- Fond principal -->
+      <div class="relative w-full rounded-[20px] shadow-lg p-6 sm:p-10 flex flex-col items-center z-10" style="background-color: #EFF7F7;">
+
+        <!-- Logo -->
+        <img src="style/assets/logo.jpg" 
+             class="w-[125px] h-[99px] sm:w-[140px] sm:h-[110px] rounded-[20px] object-contain">
+
+        <!-- Titre -->
+        <h2 class="text-teal-darker text-3xl sm:text-4xl font-bold font-outfit mt-6 text-center">
+          Créer un Compte
+        </h2>
+        <p class="text-teal-darker text-2xl font-extralight font-roboto mt-2 text-center">
+          Rejoignez la communauté ESPRIT
+        </p>
+
+        <!-- Bouton choisir fichier -->
+<div class="flex justify-end w-full max-w-[525px] mt-4">
+  <button class="w-32 h-12 bg-teal-primary rounded-[20px] text-white font-semibold font-outfit shadow-md">
+    Choisir un fichier
+  </button>
+  <span class="ml-2 text-sm font-light font-roboto flex items-center">Aucun fichier choisi</span>
+</div>
+        <!-- Formulaire -->
+        <div class="w-full max-w-[525px] mt-6 space-y-4">
+
+          <input type="text" placeholder="Nom" class="w-full h-16 px-4 bg-slate-100 rounded-[20px] border border-[#5A7070] text-gray-500 font-light font-outfit">
+          <input type="text" placeholder="Prénom" class="w-full h-16 px-4 bg-slate-100 rounded-[20px] border border-[#5A7070] text-gray-500 font-light font-outfit">
+          <input type="email" placeholder="Prenom.nom@esprit.tn" class="w-full h-16 px-4 bg-slate-100 rounded-[20px] border border-[#5A7070] text-gray-500 font-light font-outfit">
+          <input type="tel" placeholder="+216 XX XXX XXX" class="w-full h-16 px-4 bg-slate-100 rounded-[20px] border border-[#5A7070] text-gray-500 font-light font-outfit">
+          <input type="password" placeholder="Mot de Passe" class="w-full h-16 px-4 bg-slate-100 rounded-[20px] border border-[#5A7070] text-gray-500 font-light font-outfit">
+          
+        </div>
+
+
+        <!-- Options Non Fumeur / Silence / Musique -->
+        <div class="flex justify-between w-full max-w-[525px] mt-10">
+          <div class="flex flex-col items-center">
+            <div class="w-40 h-28 bg-teal-primary/10 rounded-[20px] border border-[#5A7070]"></div>
+            <span class="mt-4 text-black font-light font-outfit">Non Fumeur</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-40 h-28 bg-teal-primary/10 rounded-[20px] border border-[#5A7070]"></div>
+            <span class="mt-4 text-black font-light font-outfit">Silence</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-40 h-28 bg-teal-primary/10 rounded-[20px] border border-[#5A7070]"></div>
+            <span class="mt-4 text-black font-light font-outfit">Musique</span>
+          </div>
+        </div>
+
+        <!-- Boutons -->
+        <button class="w-full max-w-[525px] h-16 bg-teal-primary rounded-[20px] shadow-lg text-white text-lg font-semibold font-outfit tracking-widest mt-6">
+          Créer un compte
+        </button>
+        <button class="w-full max-w-[525px] h-16 bg-white border border-teal-dark rounded-[20px] text-teal-dark text-lg font-semibold font-outfit tracking-widest mt-4 mb-6">
+          Annuler
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- Footer -->
+
+<footer class="w-full bg-white mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-2">
+                            <!-- Logo et description -->
+            <div>
+                <div class="text-black text-2xl font-bold font-outfit mb-4">
+                    ESPRITCovoiturage
+                </div>
+                <p class="text-gray-text text-base font-roboto leading-6 mb-6">
+                    La plateforme de covoiturage dédiée exclusivement aux étudiants et au personnel d'ESPRIT.
+                    Partagez, économisez, connectez-vous.
+                </p>
+                <div class="w-40 h-20">
+                    <img src="style/assets/esprit.png" alt="Logo ESPRIT" class="w-full h-full object-contain">
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div> 
+                <h3 class="text-black text-xl font-bold font-outfit mb-4"></h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition"></a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition"></a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition"></a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition"></a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-black text-xl font-bold font-outfit mb-4">Contact</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Email</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">LinkedIn</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Instagram</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+
+</div> 
+<div data-layer="Rectangle 33" 
+     class="Rectangle33 w-full h-0.5 bg-gradient-to-br from-emerald-400/75 from-[27%] to-slate-500">
+</div>
+<p class="text-center text-gray-text text-sm font-roboto my-4">
+    © 2025 ESPRIT Covoiturage. Tous droits réservés. | Conçu pour la communauté ESPRIT
+</p>
+<div data-layer="Rectangle 32" 
+     class="Rectangle32 w-full h-2.5 bg-gradient-to-br from-emerald-400/75 from-[27%] to-slate-500">
+</div>
+</footer>
+
+
+</body>
+</html>

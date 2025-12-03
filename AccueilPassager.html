@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESPRITCovoiturage</title>
+    
+    <link rel="stylesheet" href="style/style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-bg-light font-roboto">
+<!-- Header -->
+<header class="w-full bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 sm:h-24 flex items-center justify-between">
+
+        <!-- LOGO -->
+        <div class="flex items-center gap-2 sm:gap-4">
+            <div class="w-10 h-10 sm:w-14 sm:h-14">
+                <img src="style/assets/logo.jpg" alt="Logo" class="w-full h-full object-cover">
+            </div>
+            <div class="text-black text-lg sm:text-xl md:text-2xl font-bold font-outfit">
+                ESPRITCovoiturage
+            </div>
+        </div>
+
+
+        <!-- NAV + PROFIL + LOGOUT -->
+        <div class="flex items-center gap-4 sm:gap-10">
+
+            <nav class="hidden md:flex gap-6 lg:gap-8">
+                <a href="#" class="text-gray-text text-sm lg:text-base font-medium hover:text-black transition">Covoiturage</a>
+                <a href="#" class="text-gray-text text-sm lg:text-base font-medium hover:text-black transition">CovoltBot</a>
+                <a href="#" class="text-gray-text text-sm lg:text-base font-medium hover:text-black transition">Groupe</a>
+                <a href="#" class="text-gray-text text-sm lg:text-base font-medium hover:text-black transition">Taxi</a>
+            </nav>
+
+            
+            <!-- CARTE PROFIL (MÊME TAILLE QUE LE BOUTON) -->
+            <div class="hidden md:flex items-center gap-3 border-2 border-teal-primary rounded-full px-4 h-12 sm:h-14 bg-white">
+
+                <!-- Avatar -->
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-primary to-teal-dark flex items-center justify-center text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        class="w-6 h-6 opacity-90">
+                        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v1.2h19.2v-1.2c0-3.2-6.4-4.8-9.6-4.8z"/>
+                    </svg>
+                </div>
+
+                <!-- Infos -->
+                    <div class="flex flex-col leading-tight hidden sm:flex">
+                    <span class="text-sm font-outfit font-semibold text-black">
+                        Maram Boussalem
+                    </span>
+
+                    <span class="px-2 py-0.5 text-xs tracking-wider bg-gray-100 text-gray-600 rounded-full font-outfit font-semibold">
+                        PASSAGER
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- BOUTON DECONNEXION -->
+            <a href="Login.html">
+                <button class="bg-teal-primary hover:bg-teal-dark transition rounded-full shadow-md px-5 sm:px-7 md:px-8 h-12 sm:h-14 flex items-center">
+                    <span class="text-teal-darker text-sm sm:text-base font-semibold font-outfit tracking-wider">
+                        Déconnexion
+                    </span>
+                </button>
+            </a>
+
+        </div>
+    </div>
+</header>
+ 
+
+
+<main>
+
+</main>
+
+<!-- Footer -->
+<footer class="w-full bg-white mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-2">
+                            <!-- Logo et description -->
+            <div>
+                <div class="text-black text-2xl font-bold font-outfit mb-4">
+                    ESPRITCovoiturage
+                </div>
+                <p class="text-gray-text text-base font-roboto leading-6 mb-6">
+                    La plateforme de covoiturage dédiée exclusivement aux étudiants et au personnel d'ESPRIT.
+                    Partagez, économisez, connectez-vous.
+                </p>
+                <div class="w-40 h-20">
+                    <img src="style/assets/esprit.png" alt="Logo ESPRIT" class="w-full h-full object-contain">
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div> 
+                <h3 class="text-black text-xl font-bold font-outfit mb-4">Navigation</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Covoiturage</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">CovoltBot</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Groupe</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Taxi</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-black text-xl font-bold font-outfit mb-4">Contact</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Email</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">LinkedIn</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Instagram</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+
+</div>      
+<div data-layer="Rectangle 33" 
+     class="Rectangle33 w-full h-0.5 bg-gradient-to-br from-emerald-400/75 from-[27%] to-slate-500">
+</div>
+<p class="text-center text-gray-text text-sm font-roboto my-4">
+    © 2025 ESPRIT Covoiturage. Tous droits réservés. | Conçu pour la communauté ESPRIT
+</p>
+<div data-layer="Rectangle 32" 
+     class="Rectangle32 w-full h-2.5 bg-gradient-to-br from-emerald-400/75 from-[27%] to-slate-500">
+</div>
+</footer>
+</body>
+</html>
