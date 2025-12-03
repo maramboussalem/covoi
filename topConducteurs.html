@@ -34,8 +34,9 @@
     @media (min-width: 1024px) { .stars { font-size: 2.1rem; } }
   </style>
 </head>
-<body class="bg-[#E7F1F1] min-h-screen font-outfit">
-<!-- HEADER IDENTIQUE À TES AUTRES PAGES -->
+<body class="bg-bg-light font-roboto">
+
+<!-- HEADER -->
 <header class="w-full bg-white shadow-sm sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
     <div class="flex items-center gap-4">
@@ -62,8 +63,9 @@
         <div class="text-left">
           <div class="font-bold text-sm text-gray-800">Maram Boussalem</div>
           <span class="px-2 py-0.5 text-xs tracking-wider bg-gray-100 text-gray-600 rounded-full font-outfit font-semibold">
-                        PASSAGER
-                    </span>        </div>
+              PASSAGER
+            </span>
+        </div>
       </button>
       <button class="bg-teal-primary hover:bg-teal-dark text-white font-semibold px-8 py-3 rounded-full transition">
         Déconnexion
@@ -79,28 +81,34 @@
 
   <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
     <div class="px-6 py-6 space-y-6">
-      <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Proposer un trajet</a>
-      <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Les Propositions</a>
-      <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Mes Demandes</a>
+      <button class="inline-flex items-center gap-3 bg-white border-2 border-teal-primary rounded-full px-4 py-2 mb-4 hover:bg-teal-primary/5 transition">
+        <div class="w-10 h-10 bg-teal-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-6 h-6 text-teal-primary" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="text-left">
+          <div class="font-bold text-sm text-gray-800">Maram Boussalem</div>
+          <span class="px-2 py-0.5 text-xs tracking-wider bg-gray-100 text-gray-600 rounded-full font-outfit font-semibold">
+              PASSAGER
+            </span>
+        </div>
+      </button>
+
+      <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Covoiturage</a>
+      <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">CovoltBot</a>
+      <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Groupe</a>
+      <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Taxi</a>
+
       <div class="pt-6 border-t border-gray-200">
-        <button class="inline-flex items-center gap-3 bg-white border-2 border-teal-primary rounded-full px-4 py-2 mb-4 hover:bg-teal-primary/5 transition">
-          <div class="w-10 h-10 bg-teal-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-teal-primary" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-          <div class="text-left">
-            <div class="font-bold text-sm text-gray-800">Maram Boussalem</div>
-            <button class="text-xs text-gray-text bg-transparent border-none p-0 hover:text-teal-primary cursor-pointer">PASSAGER</button>          </div>
-        </button>
         <button class="w-full bg-teal-primary hover:bg-teal-dark text-black py-3 rounded-full font-semibold transition">
           Déconnexion
         </button>
-
       </div>
     </div>
   </div>
 </header>
+
 
 <script>
   const menuBtn = document.getElementById('menu-btn');
@@ -164,7 +172,7 @@
           <div class="w-10 h-10 bg-teal-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3 shadow-lg">
             3
           </div>
-          <div class="stars text-2xl mb-2">★★★★</div>
+          <div class="stars text-2xl mb-2">★★★</div>
           <h3 class="font-bold text-teal-darker text-base">Foulen Elfouleni</h3>
           <p class="text-gray-text text-sm font-semibold mt-1">5000 • 156 trajets</p>
         </div>
@@ -222,7 +230,7 @@
             </svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">Foulen Elfouleni</h3>
-          <div class="stars mb-6 sm:mb-7 lg:mb-8 text-xl sm:text-2xl">★★★★☆</div>
+          <div class="stars mb-6 sm:mb-7 lg:mb-8 text-xl sm:text-2xl">★★★★</div>
 
           <div class="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-5 mb-6 sm:mb-7 lg:mb-8">
             <div class="bg-teal-primary/15 rounded-xl sm:rounded-2xl py-3 sm:py-4 lg:py-5 px-2">
@@ -260,7 +268,7 @@
             </svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">Foulen Elfouleni</h3>
-          <div class="stars mb-6 sm:mb-7 lg:mb-8 text-xl sm:text-2xl">★★★★</div>
+          <div class="stars mb-6 sm:mb-7 lg:mb-8 text-xl sm:text-2xl">★★★</div>
 
           <div class="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-5 mb-6 sm:mb-7 lg:mb-8">
             <div class="bg-teal-primary/15 rounded-xl sm:rounded-2xl py-3 sm:py-4 lg:py-5 px-2">
