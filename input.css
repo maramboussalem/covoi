@@ -7,7 +7,7 @@
   --color-bg-light: #CADFDF;
   --color-text-dark: #333333;
   --color-text-gray: #666666;
-
+   --color-button:#4CA7A9;
   --font-size-brand: 19px;
   --font-size-navlink: 15px;
   --font-size-hero: 48px;
@@ -41,6 +41,7 @@
   .bg-primary-dark  { background-color: #4A9FA1 !important; }
   .bg-bg-light      { background-color: #CADFDF !important; }
   .hover\:bg-primary-dark:hover { background-color: #4A9FA1 !important; }
+  .bg-button       { background-color: #4CA7A9 !important; }
 
   /* Opacités */
   .bg-primary\/5  { background-color: rgba(92,184,186,0.05) !important; }
@@ -53,6 +54,9 @@
   .text-text-dark { color: #333333 !important; }
   .text-text-gray { color: #666666 !important; }
   .border-primary { border-color: #5CB8BA !important; }
+  .border-primary1 { border-color: #4CA7A9 !important; }
+  .border-primary2 { border-color: #5A7070 !important; }
+
   .border-primary\/20 { border-color: rgba(92,184,186,0.20) !important; }
 
   /* Ombres */
