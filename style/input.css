@@ -1,0 +1,21 @@
+
+
+@import "tailwindcss";
+
+@theme {
+    --TitrePrincipale: #0F2F2F;
+    --Titre1: #000000;
+    --color-teal-primary: #4CA7A9;
+    --color-teal-dark: #3F8C8D;
+    --color-teal-darker: #0F2F2F;
+    --color-gray-text: #5A7070;
+    --color-bg-light: #E7F1F1;
+
+    --font-outfit: 'Outfit', sans-serif;
+    --font-roboto: 'Roboto', sans-serif;
+
+    
+    
+    
+    
+}
