@@ -1,0 +1,25 @@
+{
+  "name": "integration-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "@tailwindcss/cli -i ./input.css -o ./style/style.css --watch",
+    "build": "@tailwindcss/cli -i ./input.css -o ./style/style.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maramboussalem/Integration-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maramboussalem/Integration-web/issues"
+  },
+  "homepage": "https://github.com/maramboussalem/Integration-web#readme",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "tailwindcss": "^4.1.17" 
+  }
+}

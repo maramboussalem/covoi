@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESPRIT Covoiturage - Mes Propositions</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CA7A9',
+                        'primary-dark': '#3F8C8D',
+                        'primary-darker': '#0F2F2F',
+                        'teal-light': '#7EC9C9',
+                        'bg-light': '#E7F1F1',
+                        'text-gray': '#5A7070',
+                        'bg-white': '#F7EFEF',
+                    },
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #E7F1F1;
+            font-family: 'Outfit', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-bg-light font-outfit min-h-screen flex flex-col">
+
+    <!-- HEADER COMPLETEMENT RESPONSIVE -->
+    <header class="w-full bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 lg:h-24 flex items-center justify-between">
+            <!-- Logo + Nom -->
+            <div class="flex items-center gap-3 flex-shrink-0">
+                <div class="w-10 sm:w-12 lg:w-14 h-10 sm:h-12 lg:h-14">
+                    <img src="style/assets/logo.jpg" alt="Logo ESPRIT Covoiturage"
+                        class="w-full h-full object-cover rounded-lg">
+                </div>
+                <div class="text-black font-bold">
+                    <span class="hidden sm:block text-lg sm:text-xl lg:text-2xl">ESPRITCovoiturage</span>
+                    <span class="block sm:hidden text-base">ESPRIT</span>
+                </div>
+            </div>
+
+            <!-- Navigation Desktop -->
+            <nav class="hidden md:flex items-center gap-6 lg:gap-10">
+                <a href="#" class="text-text-gray hover:text-primary transition font-medium">Proposer un trajet</a>
+                <a href="#" class="text-text-gray hover:text-primary transition font-medium">Les Propositions</a>
+                <a href="#" class="text-text-gray hover:text-primary transition font-medium">Mes Demandes</a>
+            </nav>
+
+            <!-- Profil + Déconnexion Desktop -->
+            <div class="hidden lg:flex items-center gap-6">
+                <div class="flex items-center gap-3 px-5 py-2.5 border border-gray-300 rounded-full">
+                    <div
+                        class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        M</div>
+                    <div>
+                        <div class="font-semibold text-sm">Maram Bousalem</div>
+                        <div class="text-xs text-text-gray">Conducteur</div>
+                    </div>
+                </div>
+                <button
+                    class="bg-primary hover:bg-primary-dark text-black font-semibold px-8 py-3 rounded-full transition">
+                    Déconnexion
+                </button>
+            </div>
+
+            <!-- Bouton Hamburger Mobile -->
+            <button id="menu-btn" class="md:hidden p-2">
+                <svg class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- MENU MOBILE (collapsible) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#" class="block text-text-gray hover:text-primary font-medium">Proposer un trajet</a>
+                <a href="#" class="block text-text-gray hover:text-primary font-medium">Les Propositions</a>
+                <a href="#" class="block text-text-gray hover:text-primary font-medium">Mes Demandes</a>
+
+                <div class="pt-4 border-t border-gray-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            M</div>
+                        <div>
+                            <div class="font-semibold">Maram Bousalem</div>
+                            <div class="text-sm text-text-gray">Conducteur</div>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full bg-primary hover:bg-primary-dark text-black font-semibold py-3 rounded-full transition">
+                        Déconnexion
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Script du menu hamburger -->
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+
+            const svg = this.querySelector('svg');
+            if (menu.classList.contains('hidden')) {
+                svg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>`;
+            } else {
+                svg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>`;
+            }
+        });
+    </script>
+
+    <!-- Cercles décoratifs en arrière-plan -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div
+            class="absolute w-[800px] sm:w-[1000px] lg:w-[1400px] h-[500px] sm:h-[600px] lg:h-[750px] bg-primary-dark opacity-30 rounded-full blur-3xl -top-20 sm:-top-32 lg:-top-40 -left-40 sm:-left-60 lg:-left-80">
+        </div>
+        <div
+            class="absolute w-64 lg:w-96 h-64 lg:h-96 bg-primary opacity-20 rounded-full blur-3xl top-40 lg:top-60 -right-24 lg:-right-32 hidden lg:block">
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="bg-[#E8F4F4] py-12 lg:py-16 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-primary-darker mb-8">
+                Mes Propositions
+            </h1>
+            <div class="max-w-2xl mx-auto">
+                <div class="relative">
+                    <input type="text" placeholder="Rechercher par point de départ, date..."
+                        class="w-full px-8 py-5 pl-14 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 focus:border-primary focus:outline-none text-lg shadow-lg">
+                    <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARTES DE PROPOSITIONS (responsives) -->
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 relative z-10">
+        <div class="space-y-8">
+
+            <!-- Carte type (répétée 4 fois dans ton exemple) -->
+            <!-- Exemple 1 -->
+            <div class="bg-white border-2 border-primary rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition">
+                <div class="flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
+                    <div
+                        class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-primary to-primary-dark rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+
+                    <div class="flex-1 w-full">
+                        <div
+                            class="inline-block bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-2 rounded-full text-sm font-medium mb-4">
+                            Tunis Centre → Marsa → La Goulette
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6 text-text-gray">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z" />
+                                </svg>
+                                <span class="text-sm">8h30-11h30</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-primary flex-shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" />
+                                    <line x1="4" y1="4" x2="20" y2="20" stroke-width="2.5" />
+                                </svg>
+                                <span class="text-sm">Non-fumeur</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M7 7h10v3l4 4v6h-3c0 1.1-.9 2-2 2s-2-.9-2-2h-4c0 1.1-.9 2-2 2s-2-.9-2-2H3v-6l4-4V7z" />
+                                    <rect x="6" y="4" width="4" height="2" />
+                                </svg>
+                                <span class="text-sm">Chargeur USB</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                                </svg>
+                                <span class="text-sm">3 places libres</span>
+                            </div>
+                        </div>
+
+                        <div class="text-center pt-4 border-t border-gray-200">
+                            <div class="flex items-center justify-center gap-2 text-text-gray text-sm">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5zM5 11l1.5-4.5h11L19 11H5z" />
+                                </svg>
+                                <span>Peugeot 208 • Gris • 2020</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-right sm:text-left sm:w-auto w-full">
+                        <div class="text-3xl sm:text-4xl font-semibold text-primary-darker">15DT</div>
+                        <div class="text-sm text-text-gray">par personne</div>
+                    </div>
+                </div>
+            </div>
+            <!-- CARTE 1 - Déjà présente (je la remets pour cohérence) -->
+            <div class="bg-white border-2 border-primary rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition">
+                <div class="flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
+                    <div
+                        class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-primary to-primary-dark rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+                    <div class="flex-1 w-full">
+                        <div
+                            class="inline-block bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-2 rounded-full text-sm font-medium mb-4">
+                            Bardo → Manouba → Tebourba
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6 text-text-gray">
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z" />
+                                </svg><span class="text-sm">8h30 → 11h30</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" />
+                                    <line x1="4" y1="4" x2="20" y2="20" stroke-width="2.5" />
+                                </svg><span class="text-sm">Non-fumeur</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M7 7h10v3l4 4v6h-3c0 1.1-.9 2-2 2s-2-.9-2-2h-4c0 1.1-.9 2-2 2s-2-.9-2-2H3v-6l4-4V7z" />
+                                    <rect x="6" y="4" width="4" height="2" />
+                                </svg><span class="text-sm">Chargeur USB</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                                </svg><span class="text-sm">3 places libres</span></div>
+                        </div>
+                        <div class="text-center pt-4 border-t border-gray-200">
+                            <div class="flex items-center justify-center gap-2 text-text-gray text-sm">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5zM5 11l1.5-4.5h11L19 11H5z" />
+                                </svg>
+                                <span>Peugeot 208 • Gris • 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right sm:text-left sm:w-auto w-full">
+                        <div class="text-3xl sm:text-4xl font-semibold text-primary-darker">15DT</div>
+                        <div class="text-sm text-text-gray">par personne</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARTE 2 - Fumeur + WiFi + Musique -->
+            <div class="bg-white border-2 border-primary rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition">
+                <div class="flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
+                    <div
+                        class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-primary to-primary-dark rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+                    <div class="flex-1 w-full">
+                        <div
+                            class="inline-block bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-2 rounded-full text-sm font-medium mb-4">
+                            Ariana → Lac 1 → Tunis Centre
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6 text-text-gray">
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z" />
+                                </svg><span class="text-sm">7h15 → 8h00</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2.5 14c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm5 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm-5-4c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm5 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+                                </svg><span class="text-sm">Fumeur OK</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-7h4V3h-6z" />
+                                </svg><span class="text-sm">Musique autorisée</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                                </svg><span class="text-sm">WiFi disponible</span></div>
+                        </div>
+                        <div class="text-center pt-4 border-t border-gray-200">
+                            <div class="flex items-center justify-center gap-2 text-text-gray text-sm">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5zM5 11l1.5-4.5h11L19 11H5z" />
+                                </svg>
+                                <span>Peugeot 208 • Gris • 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right sm:text-left sm:w-auto w-full">
+                        <div class="text-3xl sm:text-4xl font-semibold text-primary-darker">12DT</div>
+                        <div class="text-sm text-text-gray">par personne</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARTE 3 - Climatisation + Animaux acceptés -->
+            <div class="bg-white border-2 border-primary rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition">
+                <div class="flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
+                    <div
+                        class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-primary to-primary-dark rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+                    <div class="flex-1 w-full">
+                        <div
+                            class="inline-block bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-2 rounded-full text-sm font-medium mb-4">
+                            Mourouj → Ben Arous → Tunis Centre
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6 text-text-gray">
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z" />
+                                </svg><span class="text-sm">14h00 → 16h30</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                </svg><span class="text-sm">Climatisation</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                </svg><span class="text-sm">Animaux acceptés</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                                </svg><span class="text-sm">2 places libres</span></div>
+                        </div>
+                        <div class="text-center pt-4 border-t border-gray-200">
+                            <div class="flex items-center justify-center gap-2 text-text-gray text-sm">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5zM5 11l1.5-4.5h11L19 11H5z" />
+                                </svg>
+                                <span>Peugeot 208 • Gris • 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right sm:text-left sm:w-auto w-full">
+                        <div class="text-3xl sm:text-4xl font-semibold text-primary-darker">9DT</div>
+                        <div class="text-sm text-text-gray">par personne</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARTE 4 - Bagages + Boissons autorisées + 4 places -->
+            <div class="bg-white border-2 border-primary rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition">
+                <div class="flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
+                    <div
+                        class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-primary to-primary-dark rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+                    <div class="flex-1 w-full">
+                        <div
+                            class="inline-block bg-gradient-to-r from-primary to-primary-dark text-white px-5 py-2 rounded-full text-sm font-medium mb-4">
+                           La Marsa → Gammarth → Raoued
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6 text-text-gray">
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z" />
+                                </svg><span class="text-sm">17h00 → 19h30</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                </svg><span class="text-sm">Bagages OK</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                </svg><span class="text-sm">Boissons autorisées</span></div>
+                            <div class="flex items-center gap-3"><svg class="w-6 h-6 text-primary flex-shrink-0"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                                </svg><span class="text-sm">4 places libres</span></div>
+                        </div>
+                        <div class="text-center pt-4 border-t border-gray-200">
+                            <div class="flex items-center justify-center gap-2 text-text-gray text-sm">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5zM5 11l1.5-4.5h11L19 11H5z" />
+                                </svg>
+                                <span>Peugeot 208 • Gris • 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right sm:text-left sm:w-auto w-full">
+                        <div class="text-3xl sm:text-4xl font-semibold text-primary-darker">12DT</div>
+                        <div class="text-sm text-text-gray">par personne</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tu peux copier/coller les autres cartes ici, elles seront automatiquement responsives grâce au même modèle -->
+            <!-- Carte 2, 3, 4... -->
+
+        </div>
+    </div>
+
+    <!-- FOOTER (déjà responsive) -->
+    <footer class="w-full bg-white mt-20 relative z-20">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
+                <div>
+                    <div class="text-black text-2xl font-bold font-outfit mb-4">ESPRITCovoiturage</div>
+                    <p class="text-text-gray leading-6 mb-6">
+                        La plateforme de covoiturage dédiée exclusivement aux étudiants et au personnel d'ESPRIT.
+                        Partagez, économisez, connectez-vous.
+                    </p>
+                    <img src="style/assets/esprit.png" alt="Logo ESPRIT" class="h-20 object-contain">
+                </div>
+                <div>
+                    <h3 class="text-black text-xl font-bold font-outfit mb-4">Navigation</h3>
+                    <ul class="space-y-3 text-text-gray">
+                        <li><a href="#" class="hover:text-primary transition">Accueil</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Options</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Témoignages</a></li>
+                        <li><a href="#" class="hover:text-primary transition">CovoltBot</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-black text-xl font-bold font-outfit mb-4">Contact</h3>
+                    <ul class="space-y-3 text-text-gray">
+                        <li><a href="#" class="hover:text-primary transition">Email</a></li>
+                        <li><a href="#" class="hover:text-primary transition">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Instagram</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="h-px bg-gradient-to-r from-primary/50 to-gray-400"></div>
+            <p class="text-center text-text-gray text-sm py-6">
+                © 2025 ESPRIT Covoiturage. Tous droits réservés. | Conçu pour la communauté ESPRIT
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

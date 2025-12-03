@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+    /* Couleurs principales de la palette */
+    --color-primary: #4CA7A9;
+    --color-primary-dark: #3F8C8D;
+    --color-primary-darker: #0F2F2F;
+
+    /* Nouvelles couleurs ajoutées */
+    --color-teal-light: #7EC9C9;
+    --color-bg-light: #E7F1F1;
+    --color-text-gray: #5A7070;
+    --color-bg-white: #F7EFEF;
+
+    /* Couleurs de texte */
+    --color-gray-text: #5A7070;
+    --color-black: #000000;
+    --color-white: #FFFFFF;
+
+    /* Couleurs d'arrière-plan */
+    --color-light-bg: #F7EFFF;
+
+    /* Couleurs de statut */
+    --color-success: #58B951;
+    --color-error: #E8181B;
+    --color-warning: #E8A618;
+
+    /* Anciens noms pour compatibilité */
+    --color-teal-primary: #4CA7A9;
+    --color-teal-dark: #3F8C8D;
+    --color-teal-darker: #0F2F2F;
+
+    /* Titres */
+    --TitrePrincipale: #0F2F2F;
+    --Titre1: #000000;
+
+    /* Polices personnalisées */
+    --font-family-outfit: 'Outfit', sans-serif;
+    --font-family-roboto: 'Roboto', sans-serif;
+}
+
+/* === APPLICATION DES COULEURS DANS TAILWIND === */
+@layer utilities {
+    .bg-primary {
+        @apply bg-[var(--color-primary)];
+    }
+
+    .bg-primary-dark {
+        @apply bg-[var(--color-primary-dark)];
+    }
+
+    .bg-teal-darker {
+        @apply bg-[var(--color-teal-darker)];
+    }
+
+    .bg-bg-light {
+        @apply bg-[var(--color-bg-light)];
+    }
+
+    .bg-teal-light {
+        @apply bg-[var(--color-teal-light)];
+    }
+
+    .bg-light-white {
+        @apply bg-[var(--color-bg-white)];
+    }
+
+    .text-primary {
+        @apply text-[var(--color-primary)];
+    }
+
+    .text-teal-darker {
+        @apply text-[var(--color-teal-darker)];
+    }
+
+    .text-gray-text {
+        @apply text-[var(--color-text-gray)];
+    }
+
+    .border-primary {
+        @apply border-[var(--color-primary)];
+    }
+
+    .border-gray-text {
+        @apply border-[var(--color-text-gray)];
+    }
+
+    /* États des cartes */
+    .status-pending {
+        @apply bg-[var(--color-pending)] text-white;
+    }
+
+    .status-pending-light {
+        @apply bg-[var(--color-pending-bg)] text-[var(--color-pending)];
+    }
+
+    .status-accepted {
+        @apply bg-[var(--color-accepted)] text-white;
+    }
+
+    .status-accepted-light {
+        @apply bg-[var(--color-accepted-bg)] text-[var(--color-accepted)];
+    }
+
+    .status-refused {
+        @apply bg-[var(--color-refused)] text-white;
+    }
+
+    .status-refused-light {
+        @apply bg-[var(--color-refused-bg)] text-[var(--color-refused)];
+    }
+}

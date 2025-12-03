@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESPRIT Covoiturage - Gestion des Demandes</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif']
+                    },
+                    colors: {
+                        'teal-primary': '#4CA7A9',
+                        'teal-dark': '#3F8C8D',
+                        'teal-darker': '#0F2F2F',
+                        'bg-light': '#E7F1F1',
+                        'gray-text': '#5A7070'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Assurer que bg-bg-light soit bien appliqué partout */
+        body {
+            background-color: #E7F1F1;
+        }
+    </style>
+</head>
+
+<body class="bg-bg-light font-outfit min-h-screen flex flex-col">
+
+    <!-- HEADER IDENTIQUE À LA LANDING PAGE (version connectée) -->
+    <header class="w-full bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+
+            <!-- Logo + Titre -->
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14">
+                    <img src="style/assets/logo.jpg" alt="Logo ESPRIT Covoiturage"
+                        class="w-full h-full object-cover rounded-lg">
+                </div>
+                <div class="text-black text-2xl font-bold font-outfit">ESPRITCovoiturage</div>
+            </div>
+
+            <!-- Navigation Desktop -->
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="#" class="text-gray-text text-base font-medium hover:text-teal-primary transition">Proposer un
+                    trajet</a>
+                <a href="#" class="text-gray-text text-base font-medium hover:text-teal-primary transition">Les
+                    Propositions</a>
+                <a href="#" class="text-gray-text text-base font-medium hover:text-teal-primary transition">Mes
+                    Demandes</a>
+            </nav>
+
+            <!-- Profil + Déconnexion (desktop) -->
+            <div class="hidden lg:flex items-center gap-6">
+                <div class="flex items-center gap-3 px-5 py-2.5 border border-gray-300 rounded-full">
+                    <div
+                        class="w-10 h-10 bg-teal-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        M</div>
+                    <div>
+                        <div class="font-semibold text-sm">Maram Bousalem</div>
+                        <div class="text-xs text-gray-text">Conducteur</div>
+                    </div>
+                </div>
+                <button
+                    class="bg-teal-primary hover:bg-teal-dark text-black font-semibold px-8 py-3 rounded-full transition">
+                    Déconnexion
+                </button>
+            </div>
+
+            <!-- Hamburger mobile -->
+            <button id="menu-btn" class="md:hidden p-2">
+                <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-6 py-6 space-y-6">
+                <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Proposer un
+                    trajet</a>
+                <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Les Propositions</a>
+                <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Mes Demandes</a>
+
+                <div class="pt-6 border-t border-gray-200">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-14 h-14 bg-teal-primary rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                            M</div>
+                        <div>
+                            <div class="font-bold text-lg">Maram Bousalem</div>
+                            <div class="text-sm text-gray-text">Conducteur</div>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full bg-teal-primary hover:bg-teal-dark text-white py-3 rounded-full font-semibold transition">
+                        Déconnexion
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <!-- Gros cercle flou teal exactement comme sur la landing page -->
+        <div class="absolute w-[1400px] h-[750px] bg-teal-dark opacity-30 rounded-full blur-3xl -top-40 -left-80"></div>
+        <!-- Petit cercle supplémentaire (optionnel, rend le rendu encore plus proche) -->
+        <div
+            class="absolute w-96 h-96 bg-teal-primary opacity-20 rounded-full blur-3xl top-60 -right-32 hidden lg:block">
+        </div>
+    </div>
+    <!-- Script pour ouvrir/fermer le menu hamburger -->
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+            const svg = this.querySelector('svg');
+            svg.innerHTML = svg.innerHTML.includes('M4 6h16')
+                ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>`
+                : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>`;
+        });
+    </script>
+
+    <!-- NOUVELLE SECTION HERO -->
+    <section class="bg-[#E8F4F4] py-20"> <!-- ce #E8F4F4 est exactement la teinte de ton screenshot -->
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-teal-darker mb-4">
+                Gérer mes demandes
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 font-light mb-10">
+                Demandes pour vos trajets vers ESPRIT
+            </p>
+
+            <!-- Barre de recherche -->
+            <div class="max-w-2xl mx-auto mb-10">
+                <div class="relative">
+                    <input type="text" placeholder="Rechercher par point de départ, date..."
+                        class="w-full px-8 py-5 pl-14 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 focus:border-primary focus:outline-none text-lg shadow-lg">
+                    <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 text-xl"></span>
+                </div>
+            </div>
+
+            <!-- Boutons de filtre -->
+            <div class="flex flex-wrap justify-center gap-4">
+                <button
+                    class="filter-btn px-10 py-4 rounded-full font-semibold text-lg bg-white border-2 border-teal-primary text-teal-primary hover:bg-teal-primary hover:text-white transition">
+                    En Attente
+                </button>
+                <button
+                    class="filter-btn px-10 py-4 rounded-full font-semibold text-lg bg-white border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition">
+                    Acceptées
+                </button>
+                <button
+                    class="filter-btn px-10 py-4 rounded-full font-semibold text-lg bg-white border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition">
+                    Refusées
+                </button>
+
+            </div>
+        </div>
+    </section>
+    <div class="relative">
+        <!-- Le gros cercle flou teal qui commence juste après la barre de recherche -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden -top-40 -z-10">
+            <div class="absolute w-[1400px] h-[750px] bg-teal-dark opacity-30 rounded-full blur-3xl -top-20 -left-80">
+            </div>
+            <div
+                class="absolute w-96 h-96 bg-teal-primary opacity-20 rounded-full blur-3xl top-32 -right-20 hidden lg:block">
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <!-- Trajets En attente -->
+        <h2 class="section-title text-3xl sm:text-4xl font-black text-center mb-10 sm:mb-16 text-gray-900">Trajets En
+            attente</h2>
+        <div class="trips-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6 sm:gap-8 mb-16">
+            <div class="trip-card bg-white rounded-3xl p-6 sm:p-8 relative shadow-lg border-2 border-yellow-500/20">
+                <div
+                    class="status-badge absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-semibold bg-green-50 text-teal-primary">
+                    Il y a 2 heures</div>
+                <div
+                    class="trip-status-label absolute top-4 right-4 px-5 py-2 rounded-full font-bold text-xs bg-yellow-500 text-white">
+                    En Attente</div>
+
+                <div
+                    class="user-avatar w-20 h-20 sm:w-24 sm:h-24 bg-teal-primary rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center text-3xl sm:text-4xl text-white">
+                    👤</div>
+                <div class="user-name text-center text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+                    NomPrenomPassager1</div>
+
+                <div class="trip-details mb-6 sm:mb-8">
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">📍</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Départ</span>
+                            <span class="detail-value text-gray-text">Bardo</span>
+                        </div>
+                    </div>
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">🏁</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Arrivée</span>
+                            <span class="detail-value text-gray-text">ESPRIT - El Ghazala</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="trip-info flex flex-col sm:flex-row justify-between mb-6 sm:mb-8 pt-4 border-t border-gray-200 gap-2 sm:gap-0">
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>📅</span>
+                        <span>16 Nov 2025</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>⏰</span>
+                        <span>08:00</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>👥</span>
+                        <span>1 places</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons flex flex-col sm:flex-row gap-3">
+                    <button
+                        class="btn btn-accept flex-1 py-4 border-none rounded-full font-bold text-base sm:text-lg text-white bg-green-500 hover:bg-green-600 transform hover:scale-[1.02] transition-all">Accepter</button>
+                    <button
+                        class="btn btn-refuse flex-1 py-4 border-none rounded-full font-bold text-base sm:text-lg text-white bg-red-500 hover:bg-red-600 transform hover:scale-[1.02] transition-all">Refuser</button>
+                </div>
+            </div>
+
+            <div class="trip-card bg-white rounded-3xl p-6 sm:p-8 relative shadow-lg border-2 border-yellow-500/20">
+                <div
+                    class="status-badge absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-semibold bg-green-50 text-teal-primary">
+                    Il y a 2 heures</div>
+                <div
+                    class="trip-status-label absolute top-4 right-4 px-5 py-2 rounded-full font-bold text-xs bg-yellow-500 text-white">
+                    En Attente</div>
+
+                <div
+                    class="user-avatar w-20 h-20 sm:w-24 sm:h-24 bg-teal-primary rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center text-3xl sm:text-4xl text-white">
+                    👤</div>
+                <div class="user-name text-center text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+                    NomPrenomPassager2</div>
+
+                <div class="trip-details mb-6 sm:mb-8">
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">📍</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Départ</span>
+                            <span class="detail-value text-gray-text">Bardo</span>
+                        </div>
+                    </div>
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">🏁</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Arrivée</span>
+                            <span class="detail-value text-gray-text">ESPRIT - El Ghazala</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="trip-info flex flex-col sm:flex-row justify-between mb-6 sm:mb-8 pt-4 border-t border-gray-200 gap-2 sm:gap-0">
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>📅</span>
+                        <span>16 Nov 2025</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>⏰</span>
+                        <span>08:00</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>👥</span>
+                        <span>1 places</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons flex flex-col sm:flex-row gap-3">
+                    <button
+                        class="btn btn-accept flex-1 py-4 border-none rounded-full font-bold text-base sm:text-lg text-white bg-green-500 hover:bg-green-600 transform hover:scale-[1.02] transition-all">Accepter</button>
+                    <button
+                        class="btn btn-refuse flex-1 py-4 border-none rounded-full font-bold text-base sm:text-lg text-white bg-red-500 hover:bg-red-600 transform hover:scale-[1.02] transition-all">Refuser</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trajets Accepté -->
+        <h2 class="section-title text-3xl sm:text-4xl font-black text-center mb-10 sm:mb-16 text-gray-900">Trajets
+            Accepté</h2>
+        <div class="trips-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6 sm:gap-8 mb-16">
+            <div class="trip-card bg-white rounded-3xl p-6 sm:p-8 relative shadow-lg border-2 border-green-500/20">
+                <div
+                    class="status-badge absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-semibold bg-green-100 text-green-700">
+                    Il y a 2 heures</div>
+                <div
+                    class="trip-status-label absolute top-4 right-4 px-5 py-2 rounded-full font-bold text-xs bg-green-500 text-white">
+                    Acceptée</div>
+
+                <div
+                    class="user-avatar w-20 h-20 sm:w-24 sm:h-24 bg-teal-primary rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center text-3xl sm:text-4xl text-white">
+                    👤</div>
+                <div class="user-name text-center text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+                    NomPrenomPassager1</div>
+
+                <div class="trip-details mb-6 sm:mb-8">
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">📍</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Départ</span>
+                            <span class="detail-value text-gray-text">Bardo</span>
+                        </div>
+                    </div>
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">🏁</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Arrivée</span>
+                            <span class="detail-value text-gray-text">ESPRIT - El Ghazala</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="trip-info flex flex-col sm:flex-row justify-between mb-6 sm:mb-8 pt-4 border-t border-gray-200 gap-2 sm:gap-0">
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>📅</span>
+                        <span>16 Nov 2025</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>⏰</span>
+                        <span>08:00</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>👥</span>
+                        <span>1 places</span>
+                    </div>
+                </div>
+
+                <button
+                    class="btn btn-contact w-full py-4 border-none rounded-full font-bold text-base sm:text-lg text-white bg-green-500 hover:bg-green-600 transform hover:scale-[1.02] transition-all">Contacter</button>
+            </div>
+
+            <div class="trip-card bg-white rounded-3xl p-6 sm:p-8 relative shadow-lg border-2 border-green-500/20">
+                <div
+                    class="status-badge absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-semibold bg-green-100 text-green-700">
+                    Il y a 2 heures</div>
+                <div
+                    class="trip-status-label absolute top-4 right-4 px-5 py-2 rounded-full font-bold text-xs bg-green-500 text-white">
+                    Acceptée</div>
+
+                <div
+                    class="user-avatar w-20 h-20 sm:w-24 sm:h-24 bg-teal-primary rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center text-3xl sm:text-4xl text-white">
+                    👤</div>
+                <div class="user-name text-center text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+                    NomPrenomPassager2</div>
+
+                <div class="trip-details mb-6 sm:mb-8">
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">📍</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Départ</span>
+                            <span class="detail-value text-gray-text">Bardo</span>
+                        </div>
+                    </div>
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">🏁</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Arrivée</span>
+                            <span class="detail-value text-gray-text">ESPRIT - El Ghazala</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="trip-info flex flex-col sm:flex-row justify-between mb-6 sm:mb-8 pt-4 border-t border-gray-200 gap-2 sm:gap-0">
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>📅</span>
+                        <span>16 Nov 2025</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>⏰</span>
+                        <span>08:00</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>👥</span>
+                        <span>1 places</span>
+                    </div>
+                </div>
+
+                <button
+                    class="btn btn-contact w-full py-4 border-none rounded-full font-bold text-base sm:text-lg text-white bg-green-500 hover:bg-green-600 transform hover:scale-[1.02] transition-all">Contacter</button>
+            </div>
+        </div>
+
+        <!-- Trajets Refusé -->
+        <h2 class="section-title text-3xl sm:text-4xl font-black text-center mb-10 sm:mb-16 text-gray-900">Trajets
+            Refusé</h2>
+        <div class="trips-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6 sm:gap-8">
+            <div class="trip-card bg-red-50 rounded-3xl p-6 sm:p-8 relative shadow-lg border-2 border-red-500/20">
+                <div
+                    class="status-badge absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-semibold bg-red-500 text-white">
+                    Il y a 2 heures</div>
+                <div
+                    class="trip-status-label absolute top-4 right-4 px-5 py-2 rounded-full font-bold text-xs bg-red-500 text-white">
+                    Refusé</div>
+
+                <div
+                    class="user-avatar w-20 h-20 sm:w-24 sm:h-24 bg-teal-primary rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center text-3xl sm:text-4xl text-white">
+                    👤</div>
+                <div class="user-name text-center text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+                    NomPrenomPassager1</div>
+
+                <div class="trip-details mb-6 sm:mb-8">
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">📍</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Départ</span>
+                            <span class="detail-value text-gray-text">Bardo</span>
+                        </div>
+                    </div>
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">🏁</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Arrivée</span>
+                            <span class="detail-value text-gray-text">ESPRIT - El Ghazala</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="trip-info flex flex-col sm:flex-row justify-between mb-6 sm:mb-8 pt-4 border-t border-gray-200 gap-2 sm:gap-0">
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>📅</span>
+                        <span>16 Nov 2025</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>⏰</span>
+                        <span>08:00</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>👥</span>
+                        <span>1 places</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trip-card bg-red-50 rounded-3xl p-6 sm:p-8 relative shadow-lg border-2 border-red-500/20">
+                <div
+                    class="status-badge absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-semibold bg-red-500 text-white">
+                    Il y a 2 heures</div>
+                <div
+                    class="trip-status-label absolute top-4 right-4 px-5 py-2 rounded-full font-bold text-xs bg-red-500 text-white">
+                    Refusé</div>
+
+                <div
+                    class="user-avatar w-20 h-20 sm:w-24 sm:h-24 bg-teal-primary rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center text-3xl sm:text-4xl text-white">
+                    👤</div>
+                <div class="user-name text-center text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+                    NomPrenomPassager2</div>
+
+                <div class="trip-details mb-6 sm:mb-8">
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">📍</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Départ</span>
+                            <span class="detail-value text-gray-text">Ezzahra</span>
+                        </div>
+                    </div>
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">🏁</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Arrivée</span>
+                            <span class="detail-value text-gray-text">ESPRIT - El Ghazala</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="trip-info flex flex-col sm:flex-row justify-between mb-6 sm:mb-8 pt-4 border-t border-gray-200 gap-2 sm:gap-0">
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>📅</span>
+                        <span>16 Nov 2025</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>⏰</span>
+                        <span>09:00</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>👥</span>
+                        <span>3 places</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trip-card bg-red-50 rounded-3xl p-6 sm:p-8 relative shadow-lg border-2 border-red-500/20">
+                <div
+                    class="status-badge absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-semibold bg-red-500 text-white">
+                    Il y a 2 heures</div>
+                <div
+                    class="trip-status-label absolute top-4 right-4 px-5 py-2 rounded-full font-bold text-xs bg-red-500 text-white">
+                    Refusé</div>
+
+                <div
+                    class="user-avatar w-20 h-20 sm:w-24 sm:h-24 bg-teal-primary rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center text-3xl sm:text-4xl text-white">
+                    👤</div>
+                <div class="user-name text-center text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+                    NomPrenomPassager4</div>
+
+                <div class="trip-details mb-6 sm:mb-8">
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">📍</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Départ</span>
+                            <span class="detail-value text-gray-text">Ariana</span>
+                        </div>
+                    </div>
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">🏁</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Arrivée</span>
+                            <span class="detail-value text-gray-text">ESPRIT - El Ghazala</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="trip-info flex flex-col sm:flex-row justify-between mb-6 sm:mb-8 pt-4 border-t border-gray-200 gap-2 sm:gap-0">
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>📅</span>
+                        <span>16 Nov 2025</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>⏰</span>
+                        <span>17:00</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>👥</span>
+                        <span>4 places</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trip-card bg-red-50 rounded-3xl p-6 sm:p-8 relative shadow-lg border-2 border-red-500/20">
+                <div
+                    class="status-badge absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-semibold bg-red-500 text-white">
+                    Il y a 2 heures</div>
+                <div
+                    class="trip-status-label absolute top-4 right-4 px-5 py-2 rounded-full font-bold text-xs bg-red-500 text-white">
+                    Refusé</div>
+
+                <div
+                    class="user-avatar w-20 h-20 sm:w-24 sm:h-24 bg-teal-primary rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center text-3xl sm:text-4xl text-white">
+                    👤</div>
+                <div class="user-name text-center text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+                    NomPrenomPassager4</div>
+
+                <div class="trip-details mb-6 sm:mb-8">
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">📍</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Départ</span>
+                            <span class="detail-value text-gray-text">Bardo</span>
+                        </div>
+                    </div>
+                    <div class="detail-row flex items-center gap-4 mb-4 text-sm sm:text-base">
+                        <span class="detail-icon text-teal-primary text-xl sm:text-2xl flex-shrink-0">🏁</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span
+                                class="detail-label font-bold text-gray-900 min-w-[60px] sm:min-w-[70px]">Arrivée</span>
+                            <span class="detail-value text-gray-text">ESPRIT - El Ghazala</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="trip-info flex flex-col sm:flex-row justify-between mb-6 sm:mb-8 pt-4 border-t border-gray-200 gap-2 sm:gap-0">
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>📅</span>
+                        <span>16 Nov 2025</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>⏰</span>
+                        <span>08:00</span>
+                    </div>
+                    <div class="info-item flex items-center gap-2 text-teal-primary font-semibold text-sm sm:text-base">
+                        <span>👥</span>
+                        <span>1 places</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Footer (blanc, propre, sans cercle dessous) -->
+    <footer class="w-full bg-white mt-20 relative z-20">
+        <div class="max-w-7xl mx-auto px-6 py-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-2">
+                <div>
+                    <div class="text-black text-2xl font-bold font-outfit mb-4">ESPRITCovoiturage</div>
+                    <p class="text-gray-text text-base font-roboto leading-6 mb-6">
+                        La plateforme de covoiturage dédiée exclusivement aux étudiants et au personnel d'ESPRIT.
+                        Partagez, économisez, connectez-vous.
+                    </p>
+                    <div class="w-40 h-20">
+                        <img src="style/assets/esprit.png" alt="Logo ESPRIT" class="w-full h-full object-contain">
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-black text-xl font-bold font-outfit mb-4">Navigation</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Accueil</a></li>
+                        <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Options</a></li>
+                        <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Témoignages</a></li>
+                        <li><a href="#" class="text-gray-text hover:text-teal-primary transition">CovoltBot</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-black text-xl font-bold font-outfit mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Email</a></li>
+                        <li><a href="#" class="text-gray-text hover:text-teal-primary transition">LinkedIn</a></li>
+                        <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Instagram</a></li>
+                        <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0.5 bg-gradient-to-br from-emerald-400/75 from-[27%] to-slate-500"></div>
+        <p class="text-center text-gray-text text-sm font-roboto my-4">
+            © 2025 ESPRIT Covoiturage. Tous droits réservés. | Conçu pour la communauté ESPRIT
+        </p>
+        <div class="w-full h-2.5 bg-gradient-to-br from-emerald-400/75 from-[27%] to-slate-500"></div>
+    </footer>
+</body>
+</html>
