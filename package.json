@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "@tailwindcss -i ./style/input.css -o ./style/style.css --watch",
-    "build": "@tailwindcss -i ./style/input.css -o ./style/style.css --minify"
+    "dev": "tailwindcss -i ./style/input.css -o ./style/style.css --watch",
+    "build": "tailwindcss -i ./style/input.css -o ./style/style.css --minify"
   },
   "repository": {
     "type": "git",
@@ -16,12 +16,13 @@
     "url": "https://github.com/maramboussalem/Integration-web/issues"
   },
   "homepage": "https://github.com/maramboussalem/Integration-web#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "tailwindcss": "^4.1.17",
     "@tailwindcss/cli": "^4.1.17",
-    "@tailwindcss/vite": "^4.1.17",
-    "tailwindcss": "^4.1.17"
+    "postcss": "^8.4.30",
+    "autoprefixer": "^10.4.15"
   },
-  "devDependencies": {},
   "keywords": [],
   "description": ""
 }
