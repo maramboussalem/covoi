@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmer votre réservation — ESPRIT Covoiturage</title>
+
+    <!-- Polices -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN + couleurs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif']
+                    },
+                    colors: {
+                        'teal-primary': '#4CA7A9',
+                        'teal-dark': '#3F8C8D',
+                        'teal-darker': '#0F2F2F',
+                        'bg-light': '#E7F1F1',
+                        'gray-text': '#5A7070',
+                        'titre-principale': '#0F2F2F'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#EDF8F8] min-h-screen flex flex-col">
+
+<!-- HEADER (inchangé) -->
+<header class="w-full bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <div class="w-14 h-14">
+                <img src="../style/assets2/logo.jpg" alt="Logo" class="w-full h-full object-cover rounded-xl">
+            </div>
+            <div class="text-black text-2xl font-bold font-outfit">ESPRITCovoiturage</div>
+        </div>
+
+        <nav class="hidden md:flex gap-8">
+            <a href="#" class="text-gray-text text-base font-medium hover:text-teal-primary transition">Covoiturage</a>
+            <a href="#" class="text-gray-text text-base font-medium hover:text-teal-primary transition">CovoltBot</a>
+            <a href="#" class="text-gray-text text-base font-medium hover:text-teal-primary transition">Groupe</a>
+            <a href="#" class="text-gray-text text-base font-medium hover:text-teal-primary transition">Taxi</a>
+        </nav>
+
+        <div class="hidden lg:flex items-center gap-6">
+            <button class="inline-flex items-center gap-3 bg-white border-2 border-teal-primary rounded-full px-4 py-2 hover:bg-teal-primary/5 transition">
+                <div class="w-10 h-10 bg-teal-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-teal-primary" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div class="text-left">
+                    <div class="font-bold text-sm text-gray-800">Maram Boussalem</div>
+                    <span class="px-2 py-0.5 text-xs tracking-wider bg-gray-100 text-gray-600 rounded-full font-outfit font-semibold">
+              PASSAGER
+            </span>
+                </div>
+            </button>
+            <button onclick="window.location.href='bienvenue.html'" class="bg-teal-primary hover:bg-teal-dark text-white font-semibold px-8 py-3 rounded-full transition">
+                Déconnexion
+            </button>
+        </div>
+
+        <button id="menu-btn" class="md:hidden p-2">
+            <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+        <div class="px-6 py-6 space-y-6">
+            <button class="inline-flex items-center gap-3 bg-white border-2 border-teal-primary rounded-full px-4 py-2 mb-4 hover:bg-teal-primary/5 transition">
+                <div class="w-10 h-10 bg-teal-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-teal-primary" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div class="text-left">
+                    <div class="font-bold text-sm text-gray-800">Maram Boussalem</div>
+                    <span class="px-2 py-0.5 text-xs tracking-wider bg-gray-100 text-gray-600 rounded-full font-outfit font-semibold">
+              PASSAGER
+            </span>
+                </div>
+            </button>
+
+            <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Covoiturage</a>
+            <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">CovoltBot</a>
+            <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Groupe</a>
+            <a href="#" class="block text-lg font-medium text-gray-700 hover:text-teal-primary">Taxi</a>
+
+            <div class="pt-6 border-t border-gray-200">
+                <button class="w-full bg-teal-primary hover:bg-teal-dark text-black py-3 rounded-full font-semibold transition">
+                    Déconnexion
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Fond avec cercles flous -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute w-[1200px] h-[1200px] bg-teal-primary/20 rounded-full blur-3xl -top-96 -left-96"></div>
+    <div class="absolute w-[800px] h-[800px] bg-teal-primary/10 rounded-full blur-3xl top-1/3 -right-40 hidden lg:block"></div>
+</div>
+
+<!-- MAIN : CARTE CENTRÉE -->
+<main class="flex-1 flex items-center justify-center px-6 py-20 relative z-10">
+    <div class="bg-white rounded-3xl shadow-2xl p-10 max-w-md w-full border border-gray-100 text-center">
+
+        <!-- Icône check -->
+        <div class="w-20 h-20 bg-teal-primary rounded-full flex items-center justify-center mx-auto mb-8">
+            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/>
+            </svg>
+        </div>
+
+        <h1 class="text-4xl font-bold text-teal-darker mb-3 leading-tight">
+            Confirmer Votre<br>Réservation
+        </h1>
+        <p class="text-gray-text mb-10">
+            Entrez le code reçu par email
+        </p>
+
+        <!-- 4 champs OTP SANS aucun point -->
+        <div class="flex justify-center gap-6 mb-10">
+            <input type="text" maxlength="1" class="w-16 h-16 md:w-20 md:h-20 text-4xl font-bold text-center rounded-2xl border-2 border-gray-300 focus:border-teal-primary focus:outline-none focus:ring-4 focus:ring-teal-primary/20 transition-all" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+
+            <input type="text" maxlength="1" class="w-16 h-16 md:w-20 md:h-20 text-4xl font-bold text-center rounded-2xl border-2 border-gray-300 focus:border-teal-primary focus:outline-none focus:ring-4 focus:ring-teal-primary/20 transition-all" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+
+            <input type="text" maxlength="1" class="w-16 h-16 md:w-20 md:h-20 text-4xl font-bold text-center rounded-2xl border-2 border-gray-300 focus:border-teal-primary focus:outline-none focus:ring-4 focus:ring-teal-primary/20 transition-all" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+
+            <input type="text" maxlength="1" class="w-16 h-16 md:w-20 md:h-20 text-4xl font-bold text-center rounded-2xl border-2 border-gray-300 focus:border-teal-primary focus:outline-none focus:ring-4 focus:ring-teal-primary/20 transition-all" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+        </div>
+
+        <p class="text-gray-text text-sm mb-8">
+            Vous n’avez pas reçu le code ?<br>
+            <a href="#" class="text-teal-primary font-semibold hover:underline">Renvoyer le code</a>
+        </p>
+
+        <button onclick="window.location.href='charteconduite.html';"class="w-full bg-teal-primary hover:bg-teal-dark text-white font-bold text-xl py-5 rounded-full transition transform hover:scale-105 shadow-lg">
+            Confirmer
+        </button>
+    </div>
+</main>
+
+<!-- Footer (inchangé) -->
+<footer class="w-full bg-white mt-20 relative z-20">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-2">
+            <div>
+                <div class="text-black text-2xl font-bold font-outfit mb-4">ESPRITCovoiturage</div>
+                <p class="text-gray-text text-base font-roboto leading-6 mb-6">
+                    La plateforme de covoiturage dédiée exclusivement aux étudiants et au personnel d'ESPRIT.
+                    Partagez, économisez, connectez-vous.
+                </p>
+                <div class="w-40 h-20">
+                    <img src="../style/assets2/esprit.png" alt="Logo ESPRIT" class="w-full h-full object-contain">
+                </div>
+            </div>
+            <div>
+                <h3 class="text-black text-xl font-bold font-outfit mb-4">Navigation</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Accueil</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Options</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Témoignages</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">CovoltBot</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-black text-xl font-bold font-outfit mb-4">Contact</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Email</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">LinkedIn</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Instagram</a></li>
+                    <li><a href="#" class="text-gray-text hover:text-teal-primary transition">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="w-full h-0.5 bg-gradient-to-br from-emerald-400/75 from-[27%] to-slate-500"></div>
+    <p class="text-center text-gray-text text-sm font-roboto my-4">
+        © 2025 ESPRIT Covoiturage. Tous droits réservés. | Conçu pour la communauté ESPRIT
+    </p>
+    <div class="w-full h-2.5 bg-gradient-to-br from-emerald-400/75 from-[27%] to-slate-500"></div>
+</footer>
+
+<!-- Script OTP (sans gestion du point car il n’existe plus) -->
+<script>
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach((input, index) => {
+        input.addEventListener('input', () => {
+            input.value = input.value.replace(/[^0-9]/g, '');
+            if (input.value.length === 1 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && !input.value && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+    });
+</script>
+
+<!-- Menu mobile -->
+<script>
+    document.getElementById('menu-btn')?.addEventListener('click', function () {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+        const svg = this.querySelector('svg');
+        svg.innerHTML = svg.innerHTML.includes('M4 6h16')
+            ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>`
+            : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>`;
+    });
+</script>
+</body>
+</html>
